@@ -26,7 +26,6 @@ const FOCUS_AREAS = [
     color: "#00d4ff",
     description:
       "Applied NLP to quantify student-AI interaction quality across cognitive dimensions — building an assessment tool that translates behavioral signals into actionable educator insights.",
-    signal: "2 US school tech departments exploring adoption",
     tags: ["NLP", "Cognitive Assessment", "Behavioral Analytics"],
   },
   {
@@ -38,7 +37,6 @@ const FOCUS_AREAS = [
     color: "#a78bfa",
     description:
       "AI-powered language learning platform in active use by students and an educator — applying NLP and speech analysis to measure real-time acquisition with live analytics driving iterative improvement.",
-    signal: "Live with active student cohort",
     tags: ["Speech Analysis", "NLP", "Live Analytics"],
   },
   {
@@ -50,7 +48,6 @@ const FOCUS_AREAS = [
     color: "#00d4ff",
     description:
       "Designing a predictive CRO optimization tool — applying visual cognitive attention science and human factors behavioral patterns to forecast user flow performance and recommend design changes before a single user test is run.",
-    signal: "Pre-test prediction, zero user sessions required",
     tags: ["Attention Science", "Human Factors", "Behavioral Modeling"],
   },
   {
@@ -62,7 +59,6 @@ const FOCUS_AREAS = [
     color: "#a78bfa",
     description:
       "Exploring how AI and ML can minimize the biological-connection barriers of prosthetics — making adaptive, responsive assistive technology accessible where it currently is not.",
-    signal: "Bridging AI to physical rehabilitation",
     tags: ["ML", "Prosthetics", "Accessibility"],
   },
   {
@@ -74,7 +70,6 @@ const FOCUS_AREAS = [
     color: "#00d4ff",
     description:
       "How do we detect and deter AI-driven Dark UX practices in the age of computers as social actors? Building frameworks that surface manipulation before it ships.",
-    signal: "Emerging research frontier",
     tags: ["Dark Patterns", "AI Ethics", "Social Computing"],
   },
   {
@@ -86,7 +81,6 @@ const FOCUS_AREAS = [
     color: "#a78bfa",
     description:
       "Integrating human-centered design, behavioral science, and data-driven research with hands-on AI product development — designing and building tools at the intersection of HCI and applied AI.",
-    signal: "Available for engagements",
     tags: ["HCI", "Behavioral Science", "AI Product"],
   },
 ];
@@ -346,20 +340,6 @@ function FocusCard({
             {area.description}
           </p>
 
-          {/* Signal bar */}
-          <div
-            className="flex items-center gap-2 pt-4"
-            style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}
-          >
-            <div
-              className="w-1.5 h-1.5 rounded-full animate-pulse"
-              style={{ backgroundColor: area.color }}
-            />
-            <span className="text-[11px] text-white/65 font-mono">
-              {area.signal}
-            </span>
-          </div>
-
           {/* Tags */}
           <div className="flex flex-wrap gap-2">
             {area.tags.map((tag) => (
@@ -377,6 +357,38 @@ function FocusCard({
             ))}
           </div>
         </div>
+      </div>
+    </motion.div>
+  );
+}
+
+function ProgressStrip() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
+  const items = [
+    { label: "Currently", value: "Two tools in active testing with student cohorts" },
+    { label: "In review", value: "One framework in peer review" },
+    { label: "Engagements", value: "Open for Q3 2026" },
+  ];
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 16 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6 }}
+      className="relative px-6 py-8 border-y border-white/[0.04]"
+    >
+      <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-0 sm:divide-x sm:divide-white/[0.06]">
+        {items.map(({ label, value }) => (
+          <div key={label} className="sm:px-10 first:pl-0 last:pr-0 flex items-baseline gap-3">
+            <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-[#00d4ff] shrink-0">
+              {label}
+            </span>
+            <span className="text-sm text-white/70">{value}</span>
+          </div>
+        ))}
       </div>
     </motion.div>
   );
@@ -616,6 +628,7 @@ export default function Home() {
         <Noise />
         <NavBar />
         <HeroSection />
+        <ProgressStrip />
         <FocusSection />
         <AboutSection />
         <ContactSection />
