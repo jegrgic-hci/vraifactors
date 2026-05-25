@@ -196,7 +196,7 @@ function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="text-[clamp(3.5rem,10vw,9rem)] font-bold leading-[0.9] tracking-tight mb-8"
+          className="text-[clamp(3.5rem,10vw,9rem)] font-bold leading-[0.9] tracking-tight mb-12"
         >
           <span className="text-white">vrai</span>
           <span
@@ -207,18 +207,20 @@ function HeroSection() {
           </span>
         </motion.h1>
 
-        {/* Tagline */}
-        <motion.p
+        {/* Core statement */}
+        <motion.blockquote
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-[clamp(1rem,2vw,1.4rem)] text-white/70 max-w-2xl mx-auto leading-relaxed mb-12 font-light"
+          className="max-w-3xl mx-auto mb-12"
         >
-          Building at the intersection of{" "}
-          <span className="text-[#a78bfa]">human cognition</span>,{" "}
-          <span className="text-[#00d4ff]">applied AI</span>, and{" "}
-          <span className="text-white/70">behavioral science</span>.
-        </motion.p>
+          <p className="text-[clamp(1.1rem,2.2vw,1.5rem)] text-white/70 leading-relaxed font-light">
+            &ldquo;True efficiency in the age of AI isn&apos;t about how many actions we can{" "}
+            <span className="text-white font-normal">automate</span> in an hour; it&apos;s about how many{" "}
+            <span style={{ color: "#00d4ff" }} className="font-normal">correct decisions</span>{" "}
+            we can make with the help of a machine.&rdquo;
+          </p>
+        </motion.blockquote>
 
         {/* Scroll cue */}
         <motion.div
