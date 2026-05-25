@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "vraifactors — Applied AI Studio",
+  title: "vraifactors — AI that earns the right to inform human judgment",
   description:
-    "Building at the intersection of human cognition, applied AI, and behavioral science. EdTech, language learning, predictive CRO, assistive robotics, AI ethics, and HCI consultation.",
+    "We don't build AI that replaces human judgment. We build AI that earns the right to inform it. Observability, directability, and human authority as structural requirements.",
 };
 
 export default function RootLayout({

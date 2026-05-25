@@ -186,7 +186,7 @@ function HeroSection() {
         >
           <div className="h-px w-12 bg-[#00d4ff]/60" />
           <span className="font-mono text-xs tracking-[0.3em] text-[#00d4ff]/80 uppercase">
-            Applied AI Studio
+            AI that earns the right to inform
           </span>
           <div className="h-px w-12 bg-[#00d4ff]/60" />
         </motion.div>
@@ -451,31 +451,37 @@ function AboutSection() {
             </div>
 
             <h2 className="text-4xl font-bold text-white tracking-tight leading-tight mb-8">
-              Where research
+              We don&apos;t build AI that replaces
               <br />
               <span
                 className="glow-violet"
                 style={{ color: "#a78bfa" }}
               >
-                ships as product.
+                human judgment.
               </span>
             </h2>
 
+            <p className="text-lg text-white font-normal mb-6 leading-snug">
+              We build AI that earns the right to inform it.
+            </p>
+
             <div className="space-y-5 text-white/70 text-sm leading-relaxed">
               <p>
-                vraifactors is an applied AI studio built around a single
-                conviction: the most meaningful technological advances are the
-                ones grounded in how humans actually think, learn, and behave.
+                vraifactors is a studio built around engineered trust — where
+                observability, directability, and human authority are structural
+                requirements, not afterthoughts.
               </p>
               <p>
                 We combine human-computer interaction research, behavioral
-                science, and production-grade AI development to build tools that
-                are rigorous by design and usable by nature.
+                science, and production-grade AI development to build systems
+                where humans remain the decision-makers — and the machine
+                earns its influence through transparency and accuracy.
               </p>
               <p>
-                The work spans assessment, accessibility, ethical design
-                systems, and performance optimization — connected by a shared
-                commitment to measuring what actually matters.
+                Any system that treats human oversight as a bottleneck is not
+                just poorly designed — it is inherently malicious by
+                architecture. That is our filter. Our work is for people who
+                agree.
               </p>
             </div>
           </motion.div>
@@ -489,23 +495,23 @@ function AboutSection() {
           >
             {[
               {
-                title: "Research-led",
-                body: "Every build is anchored in peer-reviewed behavioral and cognitive science.",
+                title: "Observability",
+                body: "Every decision an AI system influences must be legible. Black boxes are a design failure.",
                 accent: "#00d4ff",
               },
               {
-                title: "Measurable",
-                body: "If it cannot be quantified, it cannot be improved. We instrument everything.",
+                title: "Directability",
+                body: "Humans must be able to correct, override, and redirect the system at any point — by design.",
                 accent: "#a78bfa",
               },
               {
-                title: "Human-first",
-                body: "AI is a lens. The subject is always human behavior, cognition, and dignity.",
+                title: "Human authority",
+                body: "AI informs. Humans decide. That hierarchy is non-negotiable in everything we build.",
                 accent: "#00d4ff",
               },
               {
-                title: "Ethical by default",
-                body: "We build the tools and frameworks to detect what we ourselves refuse to ship.",
+                title: "Earned trust",
+                body: "Trust is not assumed or asserted. It is built through accuracy, transparency, and track record.",
                 accent: "#a78bfa",
               },
             ].map(({ title, body, accent }) => (
@@ -593,7 +599,7 @@ function Footer() {
           vraifactors &copy; 2025
         </span>
         <span className="font-mono text-xs text-white/60">
-          Applied AI Studio — HCI &times; Behavioral Science &times; Machine Learning
+          AI that earns the right to inform human judgment
         </span>
       </div>
     </footer>
