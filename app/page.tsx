@@ -171,44 +171,14 @@ function HeroSection() {
       <div aria-hidden="true" className="absolute top-1/3 left-1/4 w-[300px] h-[300px] bg-[#00d4ff]/08 rounded-full blur-[80px] pointer-events-none" />
 
       <motion.div style={{ y, opacity }} className="relative text-center max-w-5xl mx-auto">
-        {/* Studio label */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.1 }}
-          className="inline-flex items-center gap-3 mb-10"
-        >
-          <div className="h-px w-12 bg-[#00d4ff]/60" />
-          <span className="font-mono text-xs tracking-[0.3em] text-[#00d4ff]/80 uppercase">
-            AI that earns the right to inform
-          </span>
-          <div className="h-px w-12 bg-[#00d4ff]/60" />
-        </motion.div>
-
-        {/* Main wordmark */}
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="text-[clamp(3.5rem,10vw,9rem)] font-bold leading-[0.9] tracking-tight mb-12"
-        >
-          <span className="text-white">vrai</span>
-          <span
-            className="glow-cyan"
-            style={{ color: "#00d4ff" }}
-          >
-            factors
-          </span>
-        </motion.h1>
-
         {/* Core statement */}
         <motion.blockquote
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
           className="max-w-3xl mx-auto mb-12"
         >
-          <p className="text-[clamp(1.1rem,2.2vw,1.5rem)] text-white/70 leading-relaxed font-light">
+          <p className="text-[clamp(1.25rem,2.8vw,1.9rem)] text-white/70 leading-relaxed font-light">
             &ldquo;True efficiency in the age of AI isn&apos;t about how many actions we can{" "}
             <span className="text-white font-normal">automate</span> in an hour; it&apos;s about how many{" "}
             <span style={{ color: "#00d4ff" }} className="font-normal">correct decisions</span>{" "}
@@ -220,7 +190,7 @@ function HeroSection() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1.2 }}
+          transition={{ duration: 1, delay: 0.8 }}
           className="flex flex-col items-center gap-2 text-white/60"
         >
           <span className="font-mono text-[10px] tracking-[0.3em] uppercase">
