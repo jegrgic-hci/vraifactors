@@ -23,7 +23,7 @@ const FOCUS_AREAS = [
     icon: Brain,
     label: "EdTech",
     tagline: "Measuring minds in motion.",
-    color: "#00d4ff",
+    color: "#c9954a",
     description:
       "Applied NLP to quantify student-AI interaction quality across cognitive dimensions — building an assessment tool that translates behavioral signals into actionable educator insights.",
     tags: ["NLP", "Cognitive Assessment", "Behavioral Analytics"],
@@ -34,7 +34,7 @@ const FOCUS_AREAS = [
     icon: Languages,
     label: "Language Learning",
     tagline: "Acquisition, measured in real time.",
-    color: "#a78bfa",
+    color: "#e8c47a",
     description:
       "AI-powered language learning platform in active use by students and an educator — applying NLP and speech analysis to measure real-time acquisition with live analytics driving iterative improvement.",
     tags: ["Speech Analysis", "NLP", "Live Analytics"],
@@ -45,7 +45,7 @@ const FOCUS_AREAS = [
     icon: TrendingUp,
     label: "Predictive CRO",
     tagline: "Know before you test.",
-    color: "#00d4ff",
+    color: "#c9954a",
     description:
       "Designing a predictive CRO optimization tool — applying visual cognitive attention science and human factors behavioral patterns to forecast user flow performance and recommend design changes before a single user test is run.",
     tags: ["Attention Science", "Human Factors", "Behavioral Modeling"],
@@ -56,7 +56,7 @@ const FOCUS_AREAS = [
     icon: Bot,
     label: "Assistive Robotics",
     tagline: "Reducing the cost of connection.",
-    color: "#a78bfa",
+    color: "#e8c47a",
     description:
       "Exploring how AI and ML can minimize the biological-connection barriers of prosthetics — making adaptive, responsive assistive technology accessible where it currently is not.",
     tags: ["ML", "Prosthetics", "Accessibility"],
@@ -67,7 +67,7 @@ const FOCUS_AREAS = [
     icon: Shield,
     label: "AI Ethics in Design",
     tagline: "Detect. Deter. Design better.",
-    color: "#00d4ff",
+    color: "#c9954a",
     description:
       "How do we detect and deter AI-driven Dark UX practices in the age of computers as social actors? Building frameworks that surface manipulation before it ships.",
     tags: ["Dark Patterns", "AI Ethics", "Social Computing"],
@@ -78,7 +78,7 @@ const FOCUS_AREAS = [
     icon: Users,
     label: "Consultation",
     tagline: "Human-centered. Data-driven.",
-    color: "#a78bfa",
+    color: "#e8c47a",
     description:
       "Integrating human-centered design, behavioral science, and data-driven research with hands-on AI product development — designing and building tools at the intersection of HCI and applied AI.",
     tags: ["HCI", "Behavioral Science", "AI Product"],
@@ -91,7 +91,7 @@ function GridBackground() {
   return (
     <div className="fixed inset-0 pointer-events-none" aria-hidden="true">
       <div className="absolute inset-0 dot-grid opacity-60" />
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#06060f]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#09080a]" />
     </div>
   );
 }
@@ -126,12 +126,12 @@ function NavBar() {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-[#06060f]/90 backdrop-blur-xl border-b border-white/[0.04]"
+          ? "bg-[#09080a]/90 backdrop-blur-xl border-b border-white/[0.04]"
           : ""
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
-        <span className="font-mono text-sm tracking-[0.2em] text-[#00d4ff] uppercase font-medium">
+        <span className="font-mono text-sm tracking-[0.2em] text-[#c9954a] uppercase font-medium">
           vraifactors
         </span>
         <div className="flex items-center gap-8">
@@ -149,7 +149,7 @@ function NavBar() {
           </a>
           <a
             href="#contact"
-            className="text-xs tracking-widest uppercase text-[#06060f] bg-[#00d4ff] px-4 py-2 hover:bg-[#a78bfa] transition-colors font-mono"
+            className="text-xs tracking-widest uppercase text-[#09080a] bg-[#c9954a] px-4 py-2 hover:bg-[#e8c47a] transition-colors font-mono"
           >
             Connect
           </a>
@@ -167,8 +167,8 @@ function HeroSection() {
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden">
       {/* Ambient glow blobs — decorative only */}
-      <div aria-hidden="true" className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[#7c3aed]/10 rounded-full blur-[120px] pointer-events-none" />
-      <div aria-hidden="true" className="absolute top-1/3 left-1/4 w-[300px] h-[300px] bg-[#00d4ff]/08 rounded-full blur-[80px] pointer-events-none" />
+      <div aria-hidden="true" className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[#7a5c30]/10 rounded-full blur-[120px] pointer-events-none" />
+      <div aria-hidden="true" className="absolute top-1/3 left-1/4 w-[300px] h-[300px] bg-[#c9954a]/08 rounded-full blur-[80px] pointer-events-none" />
 
       <motion.div style={{ y, opacity }} className="relative text-center max-w-5xl mx-auto">
         {/* Core statement */}
@@ -181,7 +181,7 @@ function HeroSection() {
           <p className="text-[clamp(1.25rem,2.8vw,1.9rem)] text-white/70 leading-relaxed font-light">
             &ldquo;True efficiency in the age of AI isn&apos;t about how many actions we can{" "}
             <span className="text-white font-normal">automate</span> in an hour; it&apos;s about how many{" "}
-            <span style={{ color: "#00d4ff" }} className="font-normal">correct decisions</span>{" "}
+            <span style={{ color: "#c9954a" }} className="font-normal">correct decisions</span>{" "}
             we can make with the help of a machine.&rdquo;
           </p>
         </motion.blockquote>
@@ -215,7 +215,7 @@ function HeroSection() {
               { value: "HCI × AI", label: "Core Lens" },
             ].map(({ value, label }) => (
               <div key={label} className="text-left">
-                <div className="font-mono text-lg text-[#00d4ff] font-bold">
+                <div className="font-mono text-lg text-[#c9954a] font-bold">
                   {value}
                 </div>
                 <div className="font-mono text-[10px] text-white/65 tracking-widest uppercase mt-1">
@@ -353,7 +353,7 @@ function ProgressStrip() {
       <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-0 sm:divide-x sm:divide-white/[0.06]">
         {items.map(({ label, value }) => (
           <div key={label} className="sm:px-10 first:pl-0 last:pr-0 flex items-baseline gap-3">
-            <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-[#00d4ff] shrink-0">
+            <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-[#c9954a] shrink-0">
               {label}
             </span>
             <span className="text-sm text-white/70">{value}</span>
@@ -380,8 +380,8 @@ function FocusSection() {
           className="mb-20"
         >
           <div className="flex items-center gap-4 mb-6">
-            <div className="h-px w-8 bg-[#00d4ff]/60" />
-            <span className="font-mono text-xs tracking-[0.3em] text-[#00d4ff]/70 uppercase">
+            <div className="h-px w-8 bg-[#c9954a]/60" />
+            <span className="font-mono text-xs tracking-[0.3em] text-[#c9954a]/70 uppercase">
               Areas of focus
             </span>
           </div>
@@ -414,7 +414,7 @@ function AboutSection() {
   return (
     <section id="about" className="relative py-32 px-6 overflow-hidden">
       {/* Background accent */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[1px] bg-gradient-to-r from-transparent via-[#7c3aed]/40 to-transparent" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[1px] bg-gradient-to-r from-transparent via-[#7a5c30]/40 to-transparent" />
 
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-20 items-center">
@@ -426,8 +426,8 @@ function AboutSection() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="flex items-center gap-4 mb-8">
-              <div className="h-px w-8 bg-[#a78bfa]/60" />
-              <span className="font-mono text-xs tracking-[0.3em] text-[#a78bfa]/70 uppercase">
+              <div className="h-px w-8 bg-[#e8c47a]/60" />
+              <span className="font-mono text-xs tracking-[0.3em] text-[#e8c47a]/70 uppercase">
                 The studio
               </span>
             </div>
@@ -437,7 +437,7 @@ function AboutSection() {
               <br />
               <span
                 className="glow-violet"
-                style={{ color: "#a78bfa" }}
+                style={{ color: "#e8c47a" }}
               >
                 human judgment.
               </span>
@@ -479,22 +479,22 @@ function AboutSection() {
               {
                 title: "Observability",
                 body: "Every decision an AI system influences must be legible. Black boxes are a design failure.",
-                accent: "#00d4ff",
+                accent: "#c9954a",
               },
               {
                 title: "Directability",
                 body: "Humans must be able to correct, override, and redirect the system at any point — by design.",
-                accent: "#a78bfa",
+                accent: "#e8c47a",
               },
               {
                 title: "Human authority",
                 body: "AI informs. Humans decide. That hierarchy is non-negotiable in everything we build.",
-                accent: "#00d4ff",
+                accent: "#c9954a",
               },
               {
                 title: "Earned trust",
                 body: "Trust is not assumed or asserted. It is built through accuracy, transparency, and track record.",
-                accent: "#a78bfa",
+                accent: "#e8c47a",
               },
             ].map(({ title, body, accent }) => (
               <div
@@ -524,7 +524,7 @@ function ContactSection() {
   return (
     <section id="contact" className="relative py-40 px-6">
       {/* Top separator */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[1px] bg-gradient-to-r from-transparent via-[#00d4ff]/20 to-transparent" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[1px] bg-gradient-to-r from-transparent via-[#c9954a]/20 to-transparent" />
 
       <div className="max-w-4xl mx-auto text-center">
         <motion.div
@@ -534,17 +534,17 @@ function ContactSection() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
           <div className="flex items-center justify-center gap-4 mb-8">
-            <div className="h-px w-8 bg-[#00d4ff]/60" />
-            <span className="font-mono text-xs tracking-[0.3em] text-[#00d4ff]/70 uppercase">
+            <div className="h-px w-8 bg-[#c9954a]/60" />
+            <span className="font-mono text-xs tracking-[0.3em] text-[#c9954a]/70 uppercase">
               Let&apos;s build
             </span>
-            <div className="h-px w-8 bg-[#00d4ff]/60" />
+            <div className="h-px w-8 bg-[#c9954a]/60" />
           </div>
 
           <h2 className="text-[clamp(2.5rem,6vw,5rem)] font-bold text-white tracking-tight leading-tight mb-6">
             Researching, partnering,
             <br />
-            <span style={{ color: "#00d4ff" }} className="glow-cyan">
+            <span style={{ color: "#c9954a" }} className="glow-cyan">
               or just curious?
             </span>
           </h2>
@@ -557,7 +557,7 @@ function ContactSection() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href="mailto:hello@vraifactors.com"
-              className="group inline-flex items-center gap-3 bg-[#00d4ff] text-[#06060f] px-8 py-4 font-mono text-sm font-bold tracking-widest uppercase hover:bg-[#a78bfa] transition-all duration-300"
+              className="group inline-flex items-center gap-3 bg-[#c9954a] text-[#09080a] px-8 py-4 font-mono text-sm font-bold tracking-widest uppercase hover:bg-[#e8c47a] transition-all duration-300"
             >
               <Mail size={15} />
               Get in touch
