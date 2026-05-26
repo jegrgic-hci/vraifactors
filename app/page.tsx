@@ -167,10 +167,12 @@ function HeroSection() {
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden">
       {/* Ambient glow blobs — decorative only */}
-      <div aria-hidden="true" className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[#7a5c30]/10 rounded-full blur-[120px] pointer-events-none" />
-      <div aria-hidden="true" className="absolute top-1/3 left-1/4 w-[300px] h-[300px] bg-[#c9954a]/08 rounded-full blur-[80px] pointer-events-none" />
+      <div aria-hidden="true" className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[#7a5c30]/05 rounded-full blur-[120px] pointer-events-none" />
+      <div aria-hidden="true" className="absolute top-1/3 left-1/4 w-[300px] h-[300px] bg-[#c9954a]/04 rounded-full blur-[80px] pointer-events-none" />
 
       <motion.div style={{ y, opacity }} className="relative text-center max-w-5xl mx-auto">
+        <h1 className="sr-only">vraifactors — Applied AI Studio</h1>
+
         {/* Core statement */}
         <motion.blockquote
           initial={{ opacity: 0, y: 20 }}
@@ -211,7 +213,7 @@ function HeroSection() {
           <div className="flex gap-12">
             {[
               { value: "6", label: "Focus Areas" },
-              { value: "3+", label: "Active Projects" },
+              { value: "Q3 2026", label: "Open Engagements" },
               { value: "HCI × AI", label: "Core Lens" },
             ].map(({ value, label }) => (
               <div key={label} className="text-left">
@@ -425,13 +427,6 @@ function AboutSection() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="flex items-center gap-4 mb-8">
-              <div className="h-px w-8 bg-[#e8c47a]/60" />
-              <span className="font-mono text-xs tracking-[0.3em] text-[#e8c47a]/70 uppercase">
-                The studio
-              </span>
-            </div>
-
             <h2 className="text-4xl font-bold text-white tracking-tight leading-tight mb-8">
               We don&apos;t build AI that replaces
               <br />
@@ -466,6 +461,15 @@ function AboutSection() {
                 agree.
               </p>
             </div>
+
+            <a
+              href="/writings/efficiency-metric"
+              className="inline-flex items-center gap-2 font-mono text-xs tracking-widest uppercase mt-6 group"
+              style={{ color: "#c9954a" }}
+            >
+              On why we measure differently
+              <ArrowUpRight size={12} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </a>
           </motion.div>
 
           {/* Right: philosophy grid */}
@@ -533,14 +537,6 @@ function ContactSection() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          <div className="flex items-center justify-center gap-4 mb-8">
-            <div className="h-px w-8 bg-[#c9954a]/60" />
-            <span className="font-mono text-xs tracking-[0.3em] text-[#c9954a]/70 uppercase">
-              Let&apos;s build
-            </span>
-            <div className="h-px w-8 bg-[#c9954a]/60" />
-          </div>
-
           <h2 className="text-[clamp(2.5rem,6vw,5rem)] font-bold text-white tracking-tight leading-tight mb-6">
             Researching, partnering,
             <br />
@@ -578,7 +574,7 @@ function Footer() {
     <footer className="border-t border-white/[0.04] px-6 py-10">
       <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
         <span className="font-mono text-xs text-white/60 tracking-[0.2em] uppercase">
-          vraifactors &copy; 2025
+          vraifactors &copy; 2026
         </span>
         <span className="font-mono text-xs text-white/60">
           AI that earns the right to inform human judgment

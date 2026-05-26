@@ -86,6 +86,43 @@ body {
   border-radius: 2px;
 }
 
+/* Article prose */
+.prose-article {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: rgba(240, 236, 230, 0.75);
+}
+
+.prose-article p {
+  margin-bottom: 1.5rem;
+}
+
+.prose-article h2 {
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: #f0ece6;
+  letter-spacing: -0.02em;
+  margin-top: 3rem;
+  margin-bottom: 1.25rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(240, 236, 230, 0.07);
+}
+
+.prose-article em {
+  color: #f0ece6;
+  font-style: italic;
+}
+
+.prose-article blockquote {
+  border-left: 2px solid #c9954a;
+  margin: 2.5rem 0;
+  padding: 0.25rem 0 0.25rem 1.5rem;
+  font-size: 1.1rem;
+  line-height: 1.75;
+  color: rgba(240, 236, 230, 0.9);
+  font-style: italic;
+}
+
 /* Reduced motion — disable decorative animations */
 @media (prefers-reduced-motion: reduce) {
   *,
