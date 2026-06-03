@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, MotionConfig, useInView, useScroll, useTransform } from "framer-motion";
 import {
   ArrowUpRight,
@@ -13,8 +13,7 @@ import {
   ChevronDown,
   Send,
 } from "lucide-react";
-import { Turnstile } from "@marsidev/react-turnstile";
-import { submitContact } from "./actions/contact";
+import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
 
 // ─── Data ──────────────────────────────────────────────────────────────────
 
@@ -526,10 +525,50 @@ function AboutSection() {
 function ContactSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
-  const [state, formAction, pending] = useActionState(submitContact, null);
+  const [status, setStatus] = useState<"idle" | "pending" | "success" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const turnstileRef = useRef<TurnstileInstance>(null);
 
   const inputClass =
     "w-full bg-white/[0.03] border border-white/[0.08] px-4 py-3 text-sm text-white placeholder-white/30 font-mono focus:outline-none focus:border-[#c9954a]/50 transition-colors duration-200";
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (!turnstileToken) {
+      setErrorMsg("Please wait for the security check to complete.");
+      setStatus("error");
+      return;
+    }
+    setStatus("pending");
+    const fd = new FormData(e.currentTarget);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: fd.get("name"),
+          email: fd.get("email"),
+          message: fd.get("message"),
+          token: turnstileToken,
+        }),
+      });
+      const data = await res.json() as { success?: boolean; error?: string };
+      if (data.success) {
+        setStatus("success");
+      } else {
+        setErrorMsg(data.error ?? "Something went wrong.");
+        setStatus("error");
+        turnstileRef.current?.reset();
+        setTurnstileToken("");
+      }
+    } catch {
+      setErrorMsg("Network error. Please try again.");
+      setStatus("error");
+      turnstileRef.current?.reset();
+      setTurnstileToken("");
+    }
+  }
 
   return (
     <section id="contact" className="relative py-40 px-6">
@@ -555,7 +594,7 @@ function ContactSection() {
             teams, and researchers working at the edge of human-AI interaction.
           </p>
 
-          {state && "success" in state ? (
+          {status === "success" ? (
             <div className="border border-[#c9954a]/30 bg-[#c9954a]/05 px-6 py-8 text-center">
               <p className="font-mono text-sm text-[#c9954a] tracking-widest uppercase mb-2">
                 Message received
@@ -565,7 +604,7 @@ function ContactSection() {
               </p>
             </div>
           ) : (
-            <form action={formAction} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block font-mono text-[10px] tracking-[0.25em] uppercase text-white/50 mb-2">
@@ -607,22 +646,24 @@ function ContactSection() {
               </div>
 
               <Turnstile
+                ref={turnstileRef}
                 siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
                 options={{ theme: "dark" }}
+                onSuccess={setTurnstileToken}
               />
 
-              {state && "error" in state && (
-                <p className="font-mono text-xs text-red-400">{state.error}</p>
+              {status === "error" && (
+                <p className="font-mono text-xs text-red-400">{errorMsg}</p>
               )}
 
               <button
                 type="submit"
-                disabled={pending}
+                disabled={status === "pending"}
                 className="group inline-flex items-center gap-3 bg-[#c9954a] text-[#09080a] px-8 py-4 font-mono text-sm font-bold tracking-widest uppercase hover:bg-[#e8c47a] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Send size={14} />
-                {pending ? "Sending…" : "Send message"}
-                {!pending && (
+                {status === "pending" ? "Sending…" : "Send message"}
+                {status !== "pending" && (
                   <ArrowUpRight
                     size={14}
                     className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
