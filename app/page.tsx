@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useActionState, useEffect, useRef, useState } from "react";
 import { motion, MotionConfig, useInView, useScroll, useTransform } from "framer-motion";
 import {
   ArrowUpRight,
@@ -11,8 +11,10 @@ import {
   Shield,
   Users,
   ChevronDown,
-  Mail,
+  Send,
 } from "lucide-react";
+import { Turnstile } from "@marsidev/react-turnstile";
+import { submitContact } from "./actions/contact";
 
 // ─── Data ──────────────────────────────────────────────────────────────────
 
@@ -134,16 +136,16 @@ function NavBar() {
         <span className="font-mono text-sm tracking-[0.2em] text-[#c9954a] uppercase font-medium">
           vraifactors
         </span>
-        <div className="flex items-center gap-8">
+        <div className="flex items-center gap-6">
           <a
             href="#focus"
-            className="text-xs tracking-widest uppercase text-white/75 hover:text-white transition-colors font-mono"
+            className="hidden sm:block text-xs tracking-widest uppercase text-white/75 hover:text-white transition-colors font-mono"
           >
             Focus
           </a>
           <a
             href="#about"
-            className="text-xs tracking-widest uppercase text-white/75 hover:text-white transition-colors font-mono"
+            className="hidden sm:block text-xs tracking-widest uppercase text-white/75 hover:text-white transition-colors font-mono"
           >
             Studio
           </a>
@@ -210,7 +212,7 @@ function HeroSection() {
         className="absolute bottom-12 left-0 right-0 px-6"
       >
         <div className="max-w-7xl mx-auto flex justify-between items-end">
-          <div className="flex gap-12">
+          <div className="flex flex-wrap gap-x-8 gap-y-4 sm:gap-12">
             {[
               { value: "6", label: "Focus Areas" },
               { value: "Q3 2026", label: "Open Engagements" },
@@ -524,20 +526,23 @@ function AboutSection() {
 function ContactSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const [state, formAction, pending] = useActionState(submitContact, null);
+
+  const inputClass =
+    "w-full bg-white/[0.03] border border-white/[0.08] px-4 py-3 text-sm text-white placeholder-white/30 font-mono focus:outline-none focus:border-[#c9954a]/50 transition-colors duration-200";
 
   return (
     <section id="contact" className="relative py-40 px-6">
-      {/* Top separator */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[1px] bg-gradient-to-r from-transparent via-[#c9954a]/20 to-transparent" />
 
-      <div className="max-w-4xl mx-auto text-center">
+      <div className="max-w-2xl mx-auto">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          <h2 className="text-[clamp(2.5rem,6vw,5rem)] font-bold text-white tracking-tight leading-tight mb-6">
+          <h2 className="text-[clamp(2rem,5vw,4rem)] font-bold text-white tracking-tight leading-tight mb-4">
             Researching, partnering,
             <br />
             <span style={{ color: "#c9954a" }} className="glow-cyan">
@@ -545,24 +550,87 @@ function ContactSection() {
             </span>
           </h2>
 
-          <p className="text-white/70 text-base max-w-xl mx-auto leading-relaxed mb-12">
+          <p className="text-white/70 text-base leading-relaxed mb-10">
             vraifactors is open to collaborations with institutions, product
             teams, and researchers working at the edge of human-AI interaction.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
-              href="mailto:hello@vraifactors.com"
-              className="group inline-flex items-center gap-3 bg-[#c9954a] text-[#09080a] px-8 py-4 font-mono text-sm font-bold tracking-widest uppercase hover:bg-[#e8c47a] transition-all duration-300"
-            >
-              <Mail size={15} />
-              Get in touch
-              <ArrowUpRight
-                size={14}
-                className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+          {state && "success" in state ? (
+            <div className="border border-[#c9954a]/30 bg-[#c9954a]/05 px-6 py-8 text-center">
+              <p className="font-mono text-sm text-[#c9954a] tracking-widest uppercase mb-2">
+                Message received
+              </p>
+              <p className="text-white/60 text-sm">
+                Thanks for reaching out. I&apos;ll be in touch soon.
+              </p>
+            </div>
+          ) : (
+            <form action={formAction} className="space-y-4">
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block font-mono text-[10px] tracking-[0.25em] uppercase text-white/50 mb-2">
+                    Name
+                  </label>
+                  <input
+                    name="name"
+                    type="text"
+                    required
+                    placeholder="Your name"
+                    className={inputClass}
+                  />
+                </div>
+                <div>
+                  <label className="block font-mono text-[10px] tracking-[0.25em] uppercase text-white/50 mb-2">
+                    Email
+                  </label>
+                  <input
+                    name="email"
+                    type="email"
+                    required
+                    placeholder="you@example.com"
+                    className={inputClass}
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block font-mono text-[10px] tracking-[0.25em] uppercase text-white/50 mb-2">
+                  Message
+                </label>
+                <textarea
+                  name="message"
+                  required
+                  rows={5}
+                  placeholder="What are you working on?"
+                  className={`${inputClass} resize-none`}
+                />
+              </div>
+
+              <Turnstile
+                siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+                options={{ theme: "dark" }}
               />
-            </a>
-          </div>
+
+              {state && "error" in state && (
+                <p className="font-mono text-xs text-red-400">{state.error}</p>
+              )}
+
+              <button
+                type="submit"
+                disabled={pending}
+                className="group inline-flex items-center gap-3 bg-[#c9954a] text-[#09080a] px-8 py-4 font-mono text-sm font-bold tracking-widest uppercase hover:bg-[#e8c47a] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <Send size={14} />
+                {pending ? "Sending…" : "Send message"}
+                {!pending && (
+                  <ArrowUpRight
+                    size={14}
+                    className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+                  />
+                )}
+              </button>
+            </form>
+          )}
         </motion.div>
       </div>
     </section>
