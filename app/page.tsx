@@ -132,9 +132,8 @@ function NavBar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
-        <span className="font-mono text-sm tracking-[0.2em] text-[#c9954a] uppercase font-medium">
-          vraifactors
-        </span>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/logo-dark.png" alt="vraifactors" className="h-8 w-auto" />
         <div className="flex items-center gap-6">
           <a
             href="#focus"
@@ -167,6 +166,34 @@ function HeroSection() {
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden">
+      {/* Orbiting icon — arc + dot spin, center dot stays fixed */}
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 72 72"
+        className="absolute top-1/2 left-0 -translate-y-1/2 pointer-events-none opacity-10 w-[540px] h-[540px]"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <defs>
+          <linearGradient id="hero-orbit-gradient" x1="35.1573" y1="12" x2="35.1573" y2="60" gradientUnits="userSpaceOnUse">
+            <stop stopColor="#E0A339"/>
+            <stop offset="1" stopColor="#E0A339" stopOpacity="0"/>
+          </linearGradient>
+        </defs>
+        {/* Static elements */}
+        <circle cx="36" cy="36" r="3" fill="#E0A339" />
+        <path d="M36 9V15" stroke="#E0A339" strokeWidth="2" strokeLinecap="round" />
+        {/* Spinning group — arc + orbiting dot only */}
+        <g style={{ transformOrigin: "36px 36px" }} className="hero-orbit-spin">
+          <path
+            d="M36 60C31.6379 60 27.3582 58.8111 23.6211 56.5612C19.884 54.3113 16.8308 51.0854 14.7896 47.2303C12.7485 43.3752 11.7966 39.0367 12.0363 34.6812C12.276 30.3257 13.6982 26.1178 16.1501 22.51C18.6019 18.9022 21.9907 16.0308 25.9522 14.2046C29.9136 12.3783 34.2979 11.6663 38.6336 12.1449C42.9694 12.6236 47.0927 14.2749 50.5604 16.9213C54.028 19.5678 56.7088 23.1092 58.3146 27.165"
+            stroke="url(#hero-orbit-gradient)"
+            strokeWidth="2"
+          />
+          <circle cx="58" cy="27" r="2" fill="#E0A339" />
+        </g>
+      </svg>
+
       {/* Ambient glow blobs — decorative only */}
       <div aria-hidden="true" className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[#7a5c30]/05 rounded-full blur-[120px] pointer-events-none" />
       <div aria-hidden="true" className="absolute top-1/3 left-1/4 w-[300px] h-[300px] bg-[#c9954a]/04 rounded-full blur-[80px] pointer-events-none" />
