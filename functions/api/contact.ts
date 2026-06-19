@@ -60,17 +60,18 @@ export const onRequestPost = async (context: { request: Request; env: Env }) => 
       }),
     });
 
-    if (!sendRes.ok) {
-      return Response.json({ error: "Failed to send message. Please try again." }, { status: 500 });
-    }
+    const result = (await sendRes.json()) as {
+      data?: { succeeded?: number; failures?: unknown[]; error?: string; error_code?: string };
+    };
 
-    const result = (await sendRes.json()) as { data?: { succeeded?: number } };
-    if (!result.data?.succeeded) {
+    if (!sendRes.ok || !result.data?.succeeded) {
+      console.error("SMTP2GO send failed:", JSON.stringify(result));
       return Response.json({ error: "Failed to send message. Please try again." }, { status: 500 });
     }
 
     return Response.json({ success: true });
-  } catch {
+  } catch (err) {
+    console.error("Contact handler error:", err);
     return Response.json({ error: "Failed to send message. Please try again." }, { status: 500 });
   }
 };
